@@ -1,0 +1,72 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <style>
+      .navbar {
+        overflow: hidden;
+        background-color: #333;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+      }
+      .navbar a {
+        float: left;
+        display: block;
+        color: #f2f2f2;
+        text-align: center;
+        padding: 9px 14px;
+        text-decoration: none;
+        font-size: 19px;
+      }
+      .navbar h1 {
+      }
+      .navbar a:hover {
+        background: #ddd;
+        color: black;
+      }
+    </style>
+    <title>News AgreeGator</title>
+  </head>
+  <body>
+    <div class="navbar">
+      <h1 style="color: crimson;font-family: 'Courier New', Courier, monospace;position: absolute;left: 35%;">
+        Fastest News Corner
+      </h1>
+      <br/><br/>
+      {{ range $key, $value := . }}
+      <ul style="float: left;">
+        <li style="display: inline-block;">
+          <a
+            href="#{{$key}}"
+            style="color: chocolate;font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;"
+            ><b>{{$key}}</b>
+          </a>
+        </li>
+      </ul>
+      {{ end }}
+    </div>
+    {{ range $key, $value := . }}
+    <br/><br/><br/><br/><br/>
+    <h1>
+      <b
+        style="font-style: italic;font-family: Verdana, Geneva, Tahoma, sans-serif;color: rebeccapurple;"
+        >{{$key}}</b>
+    </h1>
+    {{ range $so,$news := $value.Item}}
+    <h2>
+      <a
+        href="{{$news.TruncLINK}}"
+        id="{{$key}}"
+        style="text-decoration:none;color: darkorange; "
+        >{{$news.TruncTILE}}</a>
+    </h2>
+    <h4>{{$news.TruncPUBL}}</h4>
+    <p style="font-family: 'Times New Roman', Times, serif;font-size: large;">
+      {{$news.TruncDESC}}
+    </p>
+    {{ end }} {{ end }}
+  </body>
+</html>
